@@ -2,6 +2,11 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-02-13",
   devtools: { enabled: true },
   modules: ["@pinia/nuxt", "@vueuse/nuxt"],
+  runtimeConfig: {
+    private: {
+     openWeatherApiKey: process.env.NUXT_OPEN_WEATHER_API_KEY
+    }
+  },
   css: ['~/assets/styles/main.scss'],
   app: {
     head: {
@@ -9,7 +14,6 @@ export default defineNuxtConfig({
       title: 'WeatherCheck'
     }
   },
-
   vite: {
     css: {
       preprocessorOptions: {
