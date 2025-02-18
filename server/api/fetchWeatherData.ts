@@ -1,6 +1,3 @@
-import { getCoords } from '@/server/utils/getCoords'
-import { getWeather } from '@/server/utils/getWeather'
-
 export default defineEventHandler(async (event) => {
  const { city } = getQuery(event) as { city: string }
 

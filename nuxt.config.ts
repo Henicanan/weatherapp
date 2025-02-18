@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-02-13",
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "@vueuse/nuxt"],
+  modules: ["@pinia/nuxt", "@vueuse/nuxt", "@formkit/auto-animate/nuxt"],
   runtimeConfig: {
     private: {
      openWeatherApiKey: process.env.NUXT_OPEN_WEATHER_API_KEY
@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   css: ['~/assets/styles/main.scss'],
   app: {
     head: {
-      link: [{ rel: "icon", type: "image/svg+xml", href: "./public/icons/logo.svg" }],
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/icons/logo.svg" }],
       title: 'WeatherCheck'
     }
   },

@@ -1,14 +1,12 @@
 <template>
- <header class="header">
     <div class="header__body">
         <div class="header__body-inner container">
-            <a href="/" class="header__logo logo" aria-label="Home" title="Home">
+            <NuxtLink class="header__logo logo" to="/" title="Домашняя страница" aria-label="Home">
                 <img src="/public/icons/logo.svg" alt="" width="29" height="18" class="logo__image" loading="lazy">
                 <span class="logo__title">WeatherCheck</span>
-            </a>
+            </NuxtLink>
         </div>
     </div>
- </header>
 </template>
 
 <style scoped lang="scss">

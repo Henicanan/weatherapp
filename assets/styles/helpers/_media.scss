@@ -1,41 +1,10 @@
 @use './functions' as *;
 
-$tablet: 1199.98;
-$mobile: 767.98;
-$mobile-s: 479.98;
+$mobile: 478.98;
 
-@mixin tablet-above {
-    @media (width > rem($tablet)) {
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media (width <= rem($tablet)) {
-        @content;
-    }
-}
-
-@mixin mobile-above {
-    @media (width > rem($mobile)) {
-        @content;
-    }
-}
 
 @mixin mobile {
     @media (width <= rem($mobile)) {
-        @content;
-    }
-}
-
-@mixin mobile-s-above {
-    @media (width > rem($mobile-s)) {
-        @content;
-    }
-}
-
-@mixin mobile-s {
-    @media (width <= rem($mobile-s)) {
         @content;
     }
 }
