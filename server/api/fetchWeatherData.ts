@@ -6,8 +6,7 @@ export default defineEventHandler(async (event) => {
  }
 
  const { lat, lon } = await getCoords(city)
-
-
+ 
  const weatherData = await getWeather(lat, lon)
 
  return {

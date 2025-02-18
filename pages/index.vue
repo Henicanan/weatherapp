@@ -12,31 +12,44 @@ const clickOnCity = (event: MouseEvent | TouchEvent) => {
 </script>
 
 <template>
-    <div class="search-wrapper">
-        <SearchInput v-model:cityExample="cityExample"/>
+    <div class="search">
+        <div class="search__inner container">
+            <div class="search-wrapper">
+                <SearchInput v-model:cityExample="cityExample"/>
+            </div>
+            <div class="example-wrapper">
+                <div class="example">
+                    <img class="example__image" src="/icons/arrow-up.svg" alt="стрелка для примера">
+                    <span class="example__text">
+                        Начните вводить город,<br>
+                        например, <span @pointerdown="clickOnCity" class="example__city">Ижевск</span>
+                    </span>
+                </div>
+            </div>
+            <div class="bookmark-wrapper">
+                <div class="bookmark">
+                    <span class="bookmark__text">
+                        Используйте значок «закладки»,<br>
+                        чтобы закрепить город на главной
+                    </span>
+                    <img src="/icons/bookmark.svg" alt="иконка" class="bookmark__image">
+                </div>
+            </div>  
+        </div>  
     </div>
-    <div class="example-wrapper">
-        <div class="example">
-            <img class="example__image" src="/icons/arrow-up.svg" alt="стрелка для примера">
-            <span class="example__text">
-                Начните вводить город,<br>
-                например, <span @pointerdown="clickOnCity" class="example__city">Ижевск</span>
-            </span>
-        </div>
-    </div>
-     <div class="bookmark-wrapper">
-        <div class="bookmark">
-            <span class="bookmark__text">
-                Используйте значок «закладки»,<br>
-                чтобы закрепить город на главной
-            </span>
-            <img src="/icons/bookmark.svg" alt="иконка" class="bookmark__image">
-        </div>
-     </div>   
 </template>
 
 
 <style scoped lang="scss">
+
+    .search {
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    }
     .search-wrapper {
         margin-top: fluid(80, 20);
         position: relative;

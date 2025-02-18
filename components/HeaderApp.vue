@@ -1,5 +1,14 @@
+<script setup>
+const route = useRoute();
+
+// const heightString = this.$refs.infoBox.clientHeight + 'px';
+// v-if="route.path === '/' && isDesktop"
+// const isDesktop =
+
+</script>
+
 <template>
-    <div class="header__body">
+    <div class="header__body" :class="{ hide: route.path === '/city' }">
         <div class="header__body-inner container">
             <NuxtLink class="header__logo logo" to="/" title="Домашняя страница" aria-label="Home">
                 <img src="/public/icons/logo.svg" alt="" width="29" height="18" class="logo__image" loading="lazy">
@@ -21,7 +30,7 @@
         &-inner {
             display: flex;
             align-items: center;
-            height: rem(65);
+            height: var(--header-height);
         }
     }
 
@@ -37,4 +46,11 @@
         color: var(--color-light);
     }
 }
+
+.hide {
+    @include mobile {
+        display: none;
+    }
+}
+
 </style>
