@@ -27,7 +27,7 @@ const translate_dict = {
         <p class="weather-card__description">{{ translate_dict[weather] || weather }}</p>
         <div class="weather-card__temperature">
             <span class="weather-card__temperature-degree">{{ Math.round(temp) }}°</span>
-            <img :src="`/images/${weather}.png`" width="200" height="200" 
+            <img :src="`/images/${weather}.svg`" width="200" height="200" 
                  :alt="`${weather}`" class="weather-card__temperature-image">
         </div>
         <div class="weather-card__pressure">
@@ -60,6 +60,10 @@ const translate_dict = {
             display: flex;
             align-items: center;
             margin-top: rem(16);
+
+            @include mobile {
+                flex-direction: column;
+            }
 
             &-degree {
                 font-weight: 600;
