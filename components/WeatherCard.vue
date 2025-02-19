@@ -7,8 +7,6 @@ const { data, pending, error } = await useAsyncData('cityWeather', () =>
   $fetch(`/api/fetchWeatherData?city=${city.value}`) 
 );
 
-let {temp, weather, sunset, pressure} = data.value.weather
-
 const translate_dict = {
     "Clear": "Ясно",
     "Clouds": "Облачно",
@@ -18,21 +16,27 @@ const translate_dict = {
     "Thunderstorm": "Гроза",
 }
 
+const temp = Math.round(data.value?.weather?.temp) || "–"
+const weather = data.value?.weather?.weather || "–"
+const sunset = data.value?.weather?.sunset || "–"
+const pressure = Math.round(data.value?.weather?.pressure * 0.75008)  || "–"
+
 </script>
 
 
 <template>
     <div class="weather-card">
         <h1 class="weather-card__title">{{ city }}</h1>
-        <p class="weather-card__description">{{ translate_dict[weather] || weather }}</p>
+        <p class="weather-card__description">{{ translate_dict[weather] ||  weather }}</p>
         <div class="weather-card__temperature">
-            <span class="weather-card__temperature-degree">{{ Math.round(temp) }}°</span>
-            <img :src="`/images/${weather}.png`" width="200" height="200" 
-                 :alt="`${weather}`" class="weather-card__temperature-image">
+            <span class="weather-card__temperature-degree">{{ temp }}°</span>
+            <img :src="`/images/${weather}.svg`" width="200" height="200" 
+                 :alt="`${weather}`" class="weather-card__temperature-image" 
+                 :class="{ 'sun': weather === 'Clear' }">
         </div>
         <div class="weather-card__pressure">
             <img src="/icons/barometer.svg" width="24" height="24" alt="" class="weather-card__pressure-barometer" loading="lazy">
-            <span class="weather-card__pressure-info">{{ Math.round(pressure * 0.75008) }} мм рт. ст.</span>
+            <span class="weather-card__pressure-info">{{ pressure }} мм рт. ст.</span>
         </div>
         <span class="weather-card__additional">Закат в {{ sunset }}</span>
     </div>
@@ -61,6 +65,10 @@ const translate_dict = {
             align-items: center;
             margin-top: rem(16);
 
+            @include mobile {
+                flex-direction: column;
+            }
+
             &-degree {
                 font-weight: 600;
                 color: var(--color-light);
@@ -72,10 +80,6 @@ const translate_dict = {
 
                 @include fluid-text(130, 120);
             }
-
-            &-image {
-                margin-inline: rem(20);
-            }
         }
 
         &__pressure {
@@ -85,12 +89,6 @@ const translate_dict = {
 
             &-barometer {
                 animation: rotate 5s linear infinite;
-
-                
-            }
-
-            &-info {
-
             }
         }
 
@@ -98,6 +96,10 @@ const translate_dict = {
             margin-top: rem(32);
             color: var(--color-text);
         }
+    }
+
+    .sun {
+        animation: rotate 30s linear infinite;
     }
 
     @keyframes rotate {

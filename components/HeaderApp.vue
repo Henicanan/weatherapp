@@ -1,10 +1,5 @@
 <script setup>
 const route = useRoute();
-
-// const heightString = this.$refs.infoBox.clientHeight + 'px';
-// v-if="route.path === '/' && isDesktop"
-// const isDesktop =
-
 </script>
 
 <template>
