@@ -21,6 +21,7 @@ body {
 
 main {
     flex-grow: 1;
+    height: 100%;
 }
 
 a,
@@ -35,9 +36,9 @@ svg * {
 
 a {
     color: inherit;
-
+    
     @include hover {
-        color: var(--color-accent);
+        color: var(--color-light) !important;
     }
 
     &[class] {
@@ -51,8 +52,19 @@ a {
     transition-duration: 0s !important;
 }
 
-a,
 button {
+    @include hover {
+        svg {
+            color: var(--color-light);
+            transition-duration: var(--transition-duration);
+        }
+    }
+
+    svg {
+        color: var(--color-text);
+        transition-duration: var(--transition-duration);
+    }
+    
     &[aria-label] {
         position: relative;
     }
