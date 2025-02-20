@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useFavorites } from '~/composables/useFavorites.client';
+
+const favorites = useFavorites();
+const weatherData = ref<{city:string; weather:any}[]>([]);
+
 const cityExample = ref('')
 
 const clickOnCity = (event: MouseEvent | TouchEvent) => {
@@ -9,6 +14,11 @@ const clickOnCity = (event: MouseEvent | TouchEvent) => {
     cityExample.value = target.textContent ?? ''; 
   }, 0);
 };
+
+watch(favorites,async()=>{
+    weatherData.value = await favorites.fetchWeatherForFavorites()
+    console.log(weatherData.value)
+}, { immediate: true , deep:true});
 </script>
 
 <template>
@@ -17,7 +27,8 @@ const clickOnCity = (event: MouseEvent | TouchEvent) => {
             <div class="search-wrapper">
                 <SearchInput v-model:cityExample="cityExample"/>
             </div>
-            <div class="example-wrapper">
+            <div v-if="!weatherData.length">
+            <div class="example-wrapper" >
                 <div class="example">
                     <img class="example__image" src="/icons/arrow-up.svg" alt="стрелка для примера">
                     <span class="example__text">
@@ -34,8 +45,12 @@ const clickOnCity = (event: MouseEvent | TouchEvent) => {
                     </span>
                     <img src="/icons/bookmark.svg" alt="иконка" class="bookmark__image">
                 </div>
-            </div>  
-        </div>  
+            </div> 
+        </div>
+         <div v-else class="favorite-cards">
+             <PreviewCard v-for="(item,index) in weatherData" :key="index" :city="item.city" :dataWeather="item.weather"/>
+           </div>
+        </div>      
     </div>
 </template>
 
@@ -105,4 +120,21 @@ const clickOnCity = (event: MouseEvent | TouchEvent) => {
             margin-top: rem(95);
         }
       }
+    .favorite-cards{
+        margin-top: 55px ;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:35px;
+        width: 100%;
+        max-width: 915px;
+
+        @include mobile {
+            grid-template-columns: repeat(2,1fr);
+            margin: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+
+      
 </style>
