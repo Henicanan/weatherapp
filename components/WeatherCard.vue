@@ -1,10 +1,13 @@
-<script setup>
+<script setup lang="ts">
+const props = defineProps({
+    city: {
+        type: String,
+        required: true,
+    }})
 
-const route = useRoute();
-let city = computed(() => route.query.city || ''); 
 
 const { data, pending, error } = await useAsyncData('cityWeather', () =>
-  $fetch(`/api/fetchWeatherData?city=${city.value}`) 
+  $fetch(`/api/fetchWeatherData?city=${props.city}`) 
 );
 
 let {temp, weather, sunset, pressure} = data.value.weather
@@ -23,7 +26,7 @@ const translate_dict = {
 
 <template>
     <div class="weather-card">
-        <h1 class="weather-card__title">{{ city }}</h1>
+        <h1 class="weather-card__title">{{ props.city }}</h1>
         <p class="weather-card__description">{{ translate_dict[weather] || weather }}</p>
         <div class="weather-card__temperature">
             <span class="weather-card__temperature-degree">{{ Math.round(temp) }}°</span>
