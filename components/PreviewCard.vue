@@ -17,7 +17,7 @@ const props = defineProps({
   <NuxtLink  class="city-card">
     <span class="city-card__name">{{city}}</span>
     <span class="city-card__temperature">{{ Math.floor(dataWeather?.temp) }}°</span>
-    <img class="city-card__image" :src="`/images/${dataWeather?.weather}.png`" alt="weather-icon" loading="lazy">
+    <img class="city-card__image" :src="`/images/${dataWeather?.weather}.svg`" alt="weather-icon" loading="lazy">
   </NuxtLink>
 </template>
 
