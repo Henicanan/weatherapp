@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-02-13",
   devtools: { enabled: true },
+  ssr: false,
   modules: ["@pinia/nuxt", "@vueuse/nuxt", "@formkit/auto-animate/nuxt"],
   runtimeConfig: {
     private: {
