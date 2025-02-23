@@ -14,5 +14,4 @@
 
    npm run dev
 
-Версия Node.js - v20.9.0
-
+Версия Node.js - v20
