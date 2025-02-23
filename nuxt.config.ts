@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/svg+xml", href: "/icons/logo.svg" }],
       title: 'WeatherCheck'
     },
-    baseUrl: '/weatherapp/'
+    baseUrl: '/weatherapp'
   },
   vite: {
     css: {
